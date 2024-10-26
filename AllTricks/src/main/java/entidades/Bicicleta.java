@@ -5,6 +5,7 @@ public class Bicicleta {
 	private int idBicicleta;
 	private String foto;
 	private int idMarca;
+	private String nombreMarca;
 	private String descripcion;
 	private double precio;
 	private boolean favorita;
@@ -13,13 +14,23 @@ public class Bicicleta {
 		
 	}
 
-	public Bicicleta(int idBicicleta, String foto, int idMarca, String descripcion, double precio, boolean favorita) {
+	public Bicicleta(int idBicicleta, String foto, int idMarca,String nombreMarca, String descripcion, double precio, boolean favorita) {
 		this.idBicicleta = idBicicleta;
 		this.foto = foto;
 		this.idMarca = idMarca;
+		this.nombreMarca = nombreMarca;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.favorita = favorita;
+	}
+	
+
+	public String getNombreMarca() {
+		return nombreMarca;
+	}
+
+	public void setNombreMarca(String nombreMarca) {
+		this.nombreMarca = nombreMarca;
 	}
 
 	public int getIdBicicleta() {
@@ -72,9 +83,11 @@ public class Bicicleta {
 
 	@Override
 	public String toString() {
-		return "Bicicleta [idBicicleta=" + idBicicleta + ", foto=" + foto + ", idMarca=" + idMarca + ", descripcion="
-				+ descripcion + ", precio=" + precio + ", favorita=" + favorita + "]";
+		return "Bicicleta [idBicicleta=" + idBicicleta + ", foto=" + foto + ", idMarca=" + idMarca + ", nombreMarca="
+				+ nombreMarca + ", descripcion=" + descripcion + ", precio=" + precio + ", favorita=" + favorita + "]";
 	}
+
+	
 	
 	
 	

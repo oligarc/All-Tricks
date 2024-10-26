@@ -11,10 +11,24 @@ public class TestDaoBicicletas {
 		
 		
 		DaoBicicleta daoBici = new DaoBicicleta();
-		ArrayList<Bicicleta> prueba = daoBici.listadoBicicletas();
+		/*ArrayList<Bicicleta> prueba = daoBici.listadoBicicletas();
 		
 		for (Bicicleta bicicleta : prueba) {
 			System.out.println(bicicleta.toString());
+		}
+		*/
+		
+		/*ArrayList<Bicicleta> pruebaMarca = daoBici.listadoBicicletasTrampa();
+		for (Bicicleta bicicleta : pruebaMarca) {
+			System.out.println(bicicleta.toString());
+		}
+		
+		*/
+		
+		ArrayList<Bicicleta> pruebaMarca2 = daoBici.listadoBicicletaPorMarca("cannondale");
+		for (Bicicleta bicicleta : pruebaMarca2) {
+			System.out.println(bicicleta.toString());
+			
 		}
 	}
 

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Bicicletas AllTrciks</title>
+    <title>Bicicletas AllTricks</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -25,20 +25,80 @@
     <header class="bg-primary p-4">
       <img src="img/logo-white.png" alt="" />
     </header>
+    
+    <div class="container py-3">
+      <form
+        action="${pageContext.request.contextPath}/ControllerAdmin?operacion=buscarBici"
+        method="get"
+        style="display: flex; align-items: center"
+      >
+        <select
+          name="eligeMarca"
+          id="EligeMarca"
+          style="width: 20%; margin-right: 5%"
+        >
+          <option value="" disabled selected>Elige Marca</option>
+          <option value="BH">BH</option>
+          <option value="BMC">BMC</option>
+          <option value="Bombtrack">Bombtrack</option>
+          <option value="Cannondale">Cannondale</option>
+          <option value="Commencal">Commencal</option>
+          <option value="Cube">Cube</option>
+          <option value="Dartmoor">Dartmoor</option>
+          <option value="Fuji">Fuji</option>
+          <option value="GT">GT</option>
+          <option value="Haibike">Haibike</option>
+          <option value="Kona">Kona</option>
+          <option value="Moma Bikes">Moma Bikes</option>
+          <option value="Mondraker">Mondraker</option>
+          <option value="Monty">Monty</option>
+          <option value="NS Bikes">NS Bikes</option>
+          <option value="R Raymon">R Raymon</option>
+          <option value="Radio Bikes">Radio Bikes</option>
+          <option value="Rockrider">Rockrider</option>
+          <option value="Santa cruz">Santa cruz</option>
+          <option value="Sunn">Sunn</option>
+          <option value="Trek">Trek</option>
+        </select>
+
+        <select
+          name="eligeOrden"
+          id="eligeOrden"
+          style="width: 20%; margin-right: 5%"
+        >
+          <option value="" disabled selected>Elige Orden</option>
+          <option value="marca">Marca</option>
+          <option value="ascendente">Precio Ascendente</option>
+          <option value="descendente">Precio Descendente</option>
+        </select>
+
+        <a href="#" style="font-size: 200%; margin-right: 5%">&#9733;</a>
+
+        <button
+          type="submit"
+          style="padding: 0.5em 1em; font-size: 1em; margin-right: 5%"
+        >
+          Buscar
+        </button>
+      </form>
+    </div>
+    
     <main>
       <div class="container">
         <div class="row justify-content-center mt-3">
+        <c:forEach items="${listadoBicicletas}" var="bicicleta">
           <div class="col-xl-2 col-lg-3 col-md-4 col-6 mb-3">
             <div class="card pb-3">
-              <img class="card-img-top" src="bici.jpg" alt="Title" />
+              <img class="card-img-top" src="${bicicleta.foto}" alt="Title" />
               <div class="card-body">
-                <h4 class="card-title">Aquí la marca</h4>
-                <p class="card-text">Aquí la descripción</p>
-                <p class="card-text">Aquí el precio</p>
+                <h4 class="card-title">${bicicleta.nombreMarca}</h4>
+                <p class="card-text">${bicicleta.descripcion}</p>
+                <p class="card-text">${bicicleta.precio}</p>
                 <a href="#">&#9733;</a>
               </div>
             </div>
           </div>
+          </c:forEach>
         </div>
       </div>
     </main>

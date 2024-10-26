@@ -37,11 +37,24 @@ public class ControllerAdmin extends HttpServlet {
 			
 			DaoBicicleta daoBici = new DaoBicicleta();
 			ArrayList<Bicicleta> listadoBicicletas = new ArrayList<Bicicleta>();
-			listadoBicicletas = daoBici.listadoBicicletas();
+			listadoBicicletas = daoBici.listadoBicicletasTrampa();
 			request.setAttribute("listadoBicicletas", listadoBicicletas);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			
 			break;
+			
+		case "buscarBici":
+			
+			DaoBicicleta daoBici2 = new DaoBicicleta();
+			ArrayList<Bicicleta> listadoBicicletas2 = new ArrayList<Bicicleta>();
+			
+			
+			
+			
+			
+			break;
+		
+			
 
 		
 		}
