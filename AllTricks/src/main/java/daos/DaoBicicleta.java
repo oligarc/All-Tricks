@@ -153,6 +153,54 @@ public class DaoBicicleta {
 		return listadoBicicletas;
 		
 	}
+	
+	public ArrayList<Bicicleta> listadoBicicletasMarcaOrdenFavorito(String marca,String orden,String fav){
+		
+		
+		ArrayList<Bicicleta> listadoBicicletas = new ArrayList<Bicicleta>();
+		Connection con = null;
+		Conexion miconex = new Conexion();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String query = "SELECT B.ID,B.FOTO,B.MARCA,B.DESCRIPCION,B.PRECIO,B.FAV,M.NOMBRE "
+				+ "FROM BICI B JOIN MARCA M ON B.MARCA=M.ID "
+				+ "WHERE LOWER(M.NOMBRE)=LOWER(?) "
+				+ "AND B.FAV=?";
+		
+		if (orden.equalsIgnoreCase("ascendente")) {
+	        query += "ORDER BY B.PRECIO ASC";
+	    } else if (orden.equalsIgnoreCase("descendente")) {
+	        query += "ORDER BY B.PRECIO DESC";
+	    }
+		
+		
+		try {
+			con = miconex.getConexion();
+			ps = con.prepareStatement(query);
+			ps.setString(1, marca);
+			ps.setInt(2, fav.equalsIgnoreCase("true")?1:0);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Bicicleta bici = new Bicicleta();
+	            bici.setIdBicicleta(rs.getInt("ID"));
+	            bici.setFoto(rs.getString("FOTO"));
+	            bici.setIdMarca(rs.getInt("MARCA"));
+	            bici.setDescripcion(rs.getString("DESCRIPCION"));
+	            bici.setPrecio(rs.getDouble("PRECIO"));
+	            bici.setFavorita(rs.getBoolean("FAV"));
+	            bici.setNombreMarca(rs.getString("NOMBRE"));
+	            listadoBicicletas.add(bici);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listadoBicicletas;
+	}
 
 }
 

@@ -25,10 +25,17 @@ public class TestDaoBicicletas {
 		
 		*/
 		
-		ArrayList<Bicicleta> pruebaMarca2 = daoBici.listadoBicicletaPorMarca("cannondale");
+		/*ArrayList<Bicicleta> pruebaMarca2 = daoBici.listadoBicicletaPorMarca("cannondale");
 		for (Bicicleta bicicleta : pruebaMarca2) {
 			System.out.println(bicicleta.toString());
 			
+		}
+		
+		*/
+		
+		ArrayList<Bicicleta> pruebaFinal = daoBici.listadoBicicletasMarcaOrdenFavorito("bh", "ascendente", "true");
+		for (Bicicleta bicicleta : pruebaFinal) {
+			System.out.println(bicicleta.toString());
 		}
 	}
 

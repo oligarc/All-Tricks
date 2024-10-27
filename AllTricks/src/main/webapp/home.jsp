@@ -28,13 +28,15 @@
     
     <div class="container py-3">
       <form
-        action="${pageContext.request.contextPath}/ControllerAdmin?operacion=buscarBici"
+        action="${pageContext.request.contextPath}/ControllerAdmin"
         method="get"
         style="display: flex; align-items: center"
       >
+      
+       <input type="hidden" name="operacion" value="buscarBici" /> <!-- Input oculto para pasar el value al controlador -->
         <select
           name="eligeMarca"
-          id="EligeMarca"
+          id="eligeMarca"
           style="width: 20%; margin-right: 5%"
         >
           <option value="" disabled selected>Elige Marca</option>
@@ -72,7 +74,10 @@
           <option value="descendente">Precio Descendente</option>
         </select>
 
-        <a href="#" style="font-size: 200%; margin-right: 5%">&#9733;</a>
+        <a href="#" class="text-decoration-none" onclick="toggleFavorito(event)" id="favIcon" style="font-size: 200%; margin-right: 5%; color: grey;">&#9733;</a>
+
+  
+  		<input type="hidden" name="fav" id="fav" value="false" />
 
         <button
           type="submit"
@@ -94,7 +99,7 @@
                 <h4 class="card-title">${bicicleta.nombreMarca}</h4>
                 <p class="card-text">${bicicleta.descripcion}</p>
                 <p class="card-text">${bicicleta.precio}</p>
-                <a href="#">&#9733;</a>
+                <a href="#" class="text-decoration-none">&#9733;</a>
               </div>
             </div>
           </div>
@@ -113,7 +118,23 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
+      crossorigin="anonymous"></script>
+    
+    <script>
+  	function toggleFavorito(event) {
+    event.preventDefault();
+
+    const favInput = document.getElementById("fav");
+    const favIcon = document.getElementById("favIcon");
+
+    if (favInput.value === "false") {
+      favInput.value = "true";
+      favIcon.style.color = "gold";
+    } else {
+      favInput.value = "false";
+      favIcon.style.color = "grey";
+    }
+  }
+</script>
   </body>
 </html>
