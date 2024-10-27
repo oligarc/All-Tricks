@@ -201,6 +201,41 @@ public class DaoBicicleta {
 		}
 		return listadoBicicletas;
 	}
+	
+	public void cambiarFav (int idBici,int valorFav) {
+		
+		Connection con = null;
+		Conexion miconex = new Conexion();
+		PreparedStatement ps = null;
+		
+		String query = "UPDATE BICI SET FAV=? WHERE ID=?";
+		
+		try {
+			con = miconex.getConexion();
+			con.setAutoCommit(false);
+			ps = con.prepareStatement(query);
+			
+			if(valorFav == 1) {
+				ps.setInt(1, 0);
+			}else {
+				ps.setInt(1, 1);
+			}
+			
+			ps.setInt(2, idBici);
+			ps.executeUpdate();
+			con.commit();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 
 }
 

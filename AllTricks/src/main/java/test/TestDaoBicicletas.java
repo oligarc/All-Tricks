@@ -33,10 +33,13 @@ public class TestDaoBicicletas {
 		
 		*/
 		
-		ArrayList<Bicicleta> pruebaFinal = daoBici.listadoBicicletasMarcaOrdenFavorito("bh", "ascendente", "true");
+		/*ArrayList<Bicicleta> pruebaFinal = daoBici.listadoBicicletasMarcaOrdenFavorito("bh", "ascendente", "true");
 		for (Bicicleta bicicleta : pruebaFinal) {
 			System.out.println(bicicleta.toString());
 		}
+		*/
+		
+		daoBici.cambiarFav(1, 0); //Esto funciona y está probado
 	}
 
 }
