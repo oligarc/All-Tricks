@@ -8,13 +8,13 @@ public class Bicicleta {
 	private String nombreMarca;
 	private String descripcion;
 	private double precio;
-	private boolean favorita;
+	private int favorita;
 	
 	public Bicicleta() {
 		
 	}
 
-	public Bicicleta(int idBicicleta, String foto, int idMarca,String nombreMarca, String descripcion, double precio, boolean favorita) {
+	public Bicicleta(int idBicicleta, String foto, int idMarca,String nombreMarca, String descripcion, double precio, int favorita) {
 		this.idBicicleta = idBicicleta;
 		this.foto = foto;
 		this.idMarca = idMarca;
@@ -73,11 +73,11 @@ public class Bicicleta {
 		this.precio = precio;
 	}
 
-	public boolean isFavorita() {
+	public int getFavorita() {
 		return favorita;
 	}
 
-	public void setFavorita(boolean favorita) {
+	public void setFavorita(int favorita) {
 		this.favorita = favorita;
 	}
 

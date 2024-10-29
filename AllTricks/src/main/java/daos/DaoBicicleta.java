@@ -38,7 +38,7 @@ public class DaoBicicleta {
 				bici.setIdMarca(rs.getInt("MARCA"));
 				bici.setDescripcion(rs.getString("DESCRIPCION"));
 				bici.setPrecio(rs.getDouble("PRECIO"));
-				bici.setFavorita(rs.getBoolean("FAV"));
+				bici.setFavorita(rs.getInt("FAV"));
 				
 				listadoBicicletas.add(bici);
 				
@@ -83,7 +83,7 @@ public class DaoBicicleta {
 				bici.setIdMarca(rs.getInt("MARCA"));
 				bici.setDescripcion(rs.getString("DESCRIPCION"));
 				bici.setPrecio(rs.getDouble("PRECIO"));
-				bici.setFavorita(rs.getBoolean("FAV"));
+				bici.setFavorita(rs.getInt("FAV"));
 				bici.setNombreMarca(rs.getString("NOMBRE"));
 				
 				listadoBicicletas.add(bici);
@@ -133,7 +133,7 @@ public class DaoBicicleta {
 				bici.setIdMarca(rs.getInt("MARCA"));
 				bici.setDescripcion(rs.getString("DESCRIPCION"));
 				bici.setPrecio(rs.getDouble("PRECIO"));
-				bici.setFavorita(rs.getBoolean("FAV"));
+				bici.setFavorita(rs.getInt("FAV"));
 				bici.setNombreMarca(rs.getString("NOMBRE"));
 				
 				listadoBicicletas.add(bici);
@@ -154,7 +154,7 @@ public class DaoBicicleta {
 		
 	}
 	
-	public ArrayList<Bicicleta> listadoBicicletasMarcaOrdenFavorito(String marca,String orden,String fav){
+	public ArrayList<Bicicleta> listadoBicicletasMarcaOrdenFavorito(String marca,String orden,int fav){
 		
 		
 		ArrayList<Bicicleta> listadoBicicletas = new ArrayList<Bicicleta>();
@@ -172,6 +172,8 @@ public class DaoBicicleta {
 	        query += "ORDER BY B.PRECIO ASC";
 	    } else if (orden.equalsIgnoreCase("descendente")) {
 	        query += "ORDER BY B.PRECIO DESC";
+	    }else if(orden.equalsIgnoreCase("marca")) {
+	    	query += "ORDER BY B.MARCA";
 	    }
 		
 		
@@ -179,7 +181,7 @@ public class DaoBicicleta {
 			con = miconex.getConexion();
 			ps = con.prepareStatement(query);
 			ps.setString(1, marca);
-			ps.setInt(2, fav.equalsIgnoreCase("true")?1:0);
+			ps.setInt(2, fav);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -189,7 +191,7 @@ public class DaoBicicleta {
 	            bici.setIdMarca(rs.getInt("MARCA"));
 	            bici.setDescripcion(rs.getString("DESCRIPCION"));
 	            bici.setPrecio(rs.getDouble("PRECIO"));
-	            bici.setFavorita(rs.getBoolean("FAV"));
+	            bici.setFavorita(rs.getInt("FAV"));
 	            bici.setNombreMarca(rs.getString("NOMBRE"));
 	            listadoBicicletas.add(bici);
 			}

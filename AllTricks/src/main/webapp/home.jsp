@@ -36,7 +36,7 @@
        <input type="hidden" name="operacion" value="buscarBici" /> <!-- Input oculto para pasar el value al controlador -->
         <select
           name="eligeMarca"
-          id="eligeMarca"
+          id="eligeMarca" required
           style="width: 20%; margin-right: 5%"
         >
           <option value="" disabled selected>Elige Marca</option>
@@ -65,7 +65,7 @@
 
         <select
           name="eligeOrden"
-          id="eligeOrden"
+          id="eligeOrden" required
           style="width: 20%; margin-right: 5%"
         >
           <option value="" disabled selected>Elige Orden</option>
@@ -77,7 +77,7 @@
         <a href="#" class="text-decoration-none" onclick="toggleFavorito(event)" id="favIcon" style="font-size: 200%; margin-right: 5%; color: grey;">&#9733;</a>
 
   
-  		<input type="hidden" name="fav" id="fav" value="false" />
+  		<input type="hidden" name="fav" id="fav" value="0" />
 
         <button
           type="submit"
@@ -99,7 +99,15 @@
                 <h4 class="card-title">${bicicleta.nombreMarca}</h4>
                 <p class="card-text">${bicicleta.descripcion}</p>
                 <p class="card-text">${bicicleta.precio}</p>
-                <a href="#" class="text-decoration-none">&#9733;</a>
+                
+                <c:choose>
+                <c:when test="${bicicleta.favorita == 1 }">
+                <a href="ControllerAdmin?operacion=cambiarFav&idBici=${bicicleta.idBicicleta}&favBici=${bicicleta.favorita}" class="text-decoration-none" style="color:gold">&#9733;</a>
+                </c:when>
+                <c:otherwise>
+                <a href="ControllerAdmin?operacion=cambiarFav&idBici=${bicicleta.idBicicleta}&favBici=${bicicleta.favorita}" class="text-decoration-none" style="color:grey">&#9733;</a>
+                </c:otherwise>
+                </c:choose>
               </div>
             </div>
           </div>
@@ -121,20 +129,21 @@
       crossorigin="anonymous"></script>
     
     <script>
-  	function toggleFavorito(event) {
-    event.preventDefault();
+    function toggleFavorito(event) {
+        event.preventDefault();
 
-    const favInput = document.getElementById("fav");
-    const favIcon = document.getElementById("favIcon");
+        const favInput = document.getElementById("fav");
+        const favIcon = document.getElementById("favIcon");
 
-    if (favInput.value === "false") {
-      favInput.value = "true";
-      favIcon.style.color = "gold";
-    } else {
-      favInput.value = "false";
-      favIcon.style.color = "grey";
+        if (favInput.value === "0") {
+            favInput.value = "1";
+            favIcon.style.color = "gold";
+        } else {
+            favInput.value = "0";
+            favIcon.style.color = "grey";
+        }
     }
-  }
 </script>
+
   </body>
 </html>

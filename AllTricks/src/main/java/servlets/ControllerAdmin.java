@@ -47,12 +47,27 @@ public class ControllerAdmin extends HttpServlet {
 			
 			String marcaSeleccionada = request.getParameter("eligeMarca");
 			String ordenElegida = request.getParameter("eligeOrden");
-			String fav = request.getParameter("fav");
+			int fav = Integer.parseInt(request.getParameter("fav"));
 			DaoBicicleta daoBici2 = new DaoBicicleta();
 			ArrayList<Bicicleta> listadoBicicletas2 = new ArrayList<Bicicleta>();
 			
 			listadoBicicletas2 = daoBici2.listadoBicicletasMarcaOrdenFavorito(marcaSeleccionada, ordenElegida, fav);
 			request.setAttribute("listadoBicicletas", listadoBicicletas2);
+			request.getRequestDispatcher("home.jsp").forward(request, response);
+			
+			break;
+			
+		case "cambiarFav":
+			
+			ArrayList<Bicicleta> listadoBicicletas3 = new ArrayList<Bicicleta>();
+			DaoBicicleta daoBici3 = new DaoBicicleta();
+			int idBici = Integer.parseInt(request.getParameter("idBici"));
+			int valorFav = Integer.parseInt(request.getParameter("favBici"));
+			
+			daoBici3.cambiarFav(idBici, valorFav);
+			
+			listadoBicicletas3 = daoBici3.listadoBicicletasTrampa();
+			request.setAttribute("listadoBicicletas", listadoBicicletas3);
 			request.getRequestDispatcher("home.jsp").forward(request, response);
 			
 			break;
